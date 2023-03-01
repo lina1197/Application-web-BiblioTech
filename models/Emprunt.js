@@ -12,6 +12,20 @@ livre:{
 },
 dateEmprunt:{
     type:Date,
+},
+dateRetour:{
+   type:Date,
+   default:null,
+},
+dureeEmprunt:{
+   type:Number,
+},
+dateRetourPrevue:{
+   type:Date,
+},
+penalite:{
+   type:Number,
+   default:0
 }
 }
 )

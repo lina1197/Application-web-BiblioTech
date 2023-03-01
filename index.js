@@ -30,8 +30,11 @@ import catégorieRouter from './routes/employée/catégorie.js';
 import livreRouter from './routes/employée/livre.js';
 import filterRouter from './routes/utilisateur/Filter.js'
 import empruntRouter from './routes/employée/emprunt.js';
+import catalogueRouter from './routes/utilisateur/Catalogue.js';
 
 app.use('/employe/categorie', catégorieRouter);
 app.use('/employe/livre', livreRouter);
 app.use('/employe/livre', empruntRouter);
 app.use('/utilisateur/livre',filterRouter);
+app.use('/utilisateur/livre',catalogueRouter);
+
