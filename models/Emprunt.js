@@ -1,13 +1,20 @@
 import mongoose from 'mongoose';
-const {schema,model}='mongoose';
+const {Schema,model}=mongoose;
 
 const EmpruntSchema=new Schema({
+utilisateur:{
+   type: Schema.Types.ObjectId,
+   ref: 'Utilisateur'
+},
+livre:{
+   type: Schema.Types.ObjectId,
+   ref: 'Livre'
+},
 dateEmprunt:{
     type:Date,
-    default:Date.now
 }
 }
 )
 
-const Emprunt=model('Emprunt',empruntSchema);
+const Emprunt=model('Emprunt',EmpruntSchema);
 export default Emprunt;

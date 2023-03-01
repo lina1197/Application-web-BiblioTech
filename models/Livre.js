@@ -1,21 +1,31 @@
 import mongoose from 'mongoose';
-const {schema,model}='mongoose';
+const {Schema,model}=mongoose;
 
 const livreSchema=new Schema({
-
-catégorie:{
+name:{
     type:String,
     required:true,
 },
+catégorie:{
+   type: Schema.Types.ObjectId,
+   ref: 'Catégorie'
+},
 note:{
-    type:int,
+    type:Number,
     required:true,
 },
 auteur:{
     type:String,
     required:true,
 },
-
+nombreEmprunts:{
+    type:Number,
+    required:true,
+},
+nombreCopiesDisponible:{
+    type:Number,
+    required:true,
+}
 },{timestamps:true}
 )
 

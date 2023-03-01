@@ -27,4 +27,11 @@ console.log(`Server started on port ${port}`);
 import authRouter from './routes/auth.js'
 app.use('/auth', authRouter);
 import catégorieRouter from './routes/employée/catégorie.js';
+import livreRouter from './routes/employée/livre.js';
+import filterRouter from './routes/utilisateur/Filter.js'
+import empruntRouter from './routes/employée/emprunt.js';
+
 app.use('/employe/categorie', catégorieRouter);
+app.use('/employe/livre', livreRouter);
+app.use('/employe/livre', empruntRouter);
+app.use('/utilisateur/livre',filterRouter);

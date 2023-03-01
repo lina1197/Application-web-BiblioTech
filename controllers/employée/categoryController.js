@@ -18,3 +18,17 @@
             return res.status(500).send(error);
         }
     }
+
+    //Delete a category
+    export async function deleteCategory (req, res) {
+
+        try {
+        const categorie=await Catégorie.findByIdAndDelete(req.params.id);
+        if(!categorie) return res.send({message:'category doesnt exist'});
+        res.status(200).send({message:'deleted successfully'});
+
+           
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    }
