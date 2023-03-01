@@ -52,7 +52,7 @@ const foundUtilisateur = await Utilisateur.findById(utilisateur);
             // const book=await Livre.findOneAndUpdate({ _id: LivreId }, { nombreCopiesDisponible:updatedNombreCopiesDisponible },{new:true});
             // return res.send(book);
             const book=await Livre.findOneAndUpdate({ livre }, { nombreCopiesDisponible:updatedNombreCopiesDisponible },{new:true});
-            return res.send(book);
+            return res.send(emprunt);
             
              
             } catch (error) {
