@@ -147,8 +147,9 @@ if (!emprunt) {
 
   // const emprunt=await Emprunt.updateOne({ _id:empruntId}, update,updatePenalite, {new:true});
 const emprunt = await Emprunt.findByIdAndUpdate(empruntId, { $set: { ...updatePenalite, ...update } }, { new: true });
+return res.send(emprunt);
+
 }
-  return res.send(emprunt);
     } catch(error) {
             return res.status(500).send(error);
         }  
