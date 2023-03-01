@@ -32,10 +32,10 @@ const foundUtilisateur = await Utilisateur.findById(utilisateur);
       return res.status(400).send({ message: 'this book is not available' });
     }
     
-            const foundEmprunt = await Emprunt.findOne({ livre, utilisateur, dateEmprunt,dureeEmprunt});
-            if (foundEmprunt) {
-                return res.send({ message: 'EXISTS' });
-             }
+            // const foundEmprunt = await Emprunt.findOne({ livre, utilisateur, dateEmprunt,dureeEmprunt});
+            // if (foundEmprunt) {
+            //     return res.send({ message: 'EXISTS' });
+            //  }
     //limit number of book rentals to 3 a month by user
     const today = new Date();
     const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
@@ -116,6 +116,7 @@ export async function UpdateRental (req,res) {
     const empruntId=req.params.id;
     const dateRetourString = req.body.dateRetour;
     const dateRetour = new Date(dateRetourString);
+    console.log(dateRetour);
     const update = { dateRetour: dateRetour };
     const foundEmprunt=await Emprunt.findOne({_id:empruntId});
     if (!foundEmprunt) {
@@ -130,7 +131,8 @@ export async function UpdateRental (req,res) {
     const dateEmprunt = empruntDt.dateEmprunt;
     const empruntDuree = await Emprunt.findById(empruntId).select('dureeEmprunt').exec();
     const dureeEmprunt = empruntDuree.dureeEmprunt;
-    const dateRetourPrevue=new Date(dateEmprunt +(dureeEmprunt * 24 * 60 * 60 * 1000) );
+    const dateRetourPrevue=new Date(dateEmprunt.getTime() +(dureeEmprunt * 24 * 60 * 60 * 1000) );
+    console.log(dateRetourPrevue);
 if (!emprunt) {
     return res.status(404).json({ message: 'Rental not found' });
   }
@@ -138,9 +140,14 @@ if (!emprunt) {
   if (emprunt.dateRetour) {
     return res.status(400).json({ message: 'Book already returned' });
   }
+  if (dateRetour > dateRetourPrevue) {
   const daysLate = Math.ceil((dateRetour - dateRetourPrevue) / (1000 * 60 * 60 * 24));
-  const penalite = daysLate * 1.5; // example fee of $1.50 per day
-  emprunt.penalite = penalte > 0 ? penalite : 0;
+  const penaltyFee = daysLate * 1.5; // example fee of $1.50 per day
+  const updatePenalite = { penalite: penaltyFee };
+
+  // const emprunt=await Emprunt.updateOne({ _id:empruntId}, update,updatePenalite, {new:true});
+const emprunt = await Emprunt.findByIdAndUpdate(empruntId, { $set: { ...updatePenalite, ...update } }, { new: true });
+}
   return res.send(emprunt);
     } catch(error) {
             return res.status(500).send(error);
