@@ -5,8 +5,7 @@ import Utilisateur from '../../models/Utilisateur.js';
 const myAuthFunction= async(req,res,next) =>{
 try {
 const token = req.headers.authorization.split(" ")[1];
-//let Utilisateur = jwt.verify(token, PRIVATE_KEY);
-//let UtilisateurX = await Utilisateur.findById(Utilisateur._id).select('-password');
+
     let decodedToken = jwt.verify(token, PRIVATE_KEY);
 
   let UtilisateurX = await Utilisateur.findOne({ _id: decodedToken._id }).select('-password');
