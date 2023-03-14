@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
+import Joi from 'joi';
 
 const {Schema, model} =mongoose;
 
@@ -16,6 +17,11 @@ email:{
 password:{
     type:String,
     required:true,
+},
+
+dateSuspension:{
+    type:Date,
+    default:null,
 },
 role : { type: String,
     enum: {

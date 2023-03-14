@@ -1,12 +1,11 @@
 import express, { urlencoded } from 'express';
 import bcrypt from 'bcrypt'; 
-import dotenv from 'dotenv';
-import path from 'path';
+import 'dotenv/config';
+// import path from 'path';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+// const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
-//dotenv.config({ path: path.join(__dirname, '.env') });
-dotenv.config({ path: 'C:/Users/BNP%20FORMATION/Desktop/BiblioTech/.env' });
+
 
 console.log(process.env.PRIVATE_KEY)
 
@@ -31,10 +30,18 @@ import livreRouter from './routes/employée/livre.js';
 import filterRouter from './routes/utilisateur/Filter.js'
 import empruntRouter from './routes/employée/emprunt.js';
 import catalogueRouter from './routes/utilisateur/Catalogue.js';
-
+import commentRouter from './routes/utilisateur/CommentRouter.js';
+import replyRouter from './routes/utilisateur/ReplyRouter.js';
+import historiqueRouter from './routes/utilisateur/HistoriqueRouter.js';
+import statisticsRouter from './routes/employée/statistics.js';
 app.use('/employe/categorie', catégorieRouter);
 app.use('/employe/livre', livreRouter);
 app.use('/employe/livre', empruntRouter);
+app.use('/employe/statistics',statisticsRouter);
 app.use('/utilisateur/livre',filterRouter);
 app.use('/utilisateur/livre',catalogueRouter);
+app.use('/utilisateur/livre',commentRouter);
+app.use('/utilisateur/livre',replyRouter);
+app.use('/utilisateur/emprunts',historiqueRouter);
+
 

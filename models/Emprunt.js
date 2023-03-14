@@ -17,15 +17,15 @@ dateRetour:{
    type:Date,
    default:null,
 },
+isSuspended:{
+   type:Boolean,
+   default:false,
+},
 dureeEmprunt:{
    type:Number,
 },
 dateRetourPrevue:{
    type:Date,
-},
-penalite:{
-   type:Number,
-   default:0
 }
 }
 )

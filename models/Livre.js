@@ -25,7 +25,11 @@ nombreEmprunts:{
 nombreCopiesDisponible:{
     type:Number,
     required:true,
-}
+},
+comments: [{
+             type: mongoose.Schema.Types.ObjectId,
+             ref: 'Comment'
+           }],
 },{timestamps:true}
 )
 
