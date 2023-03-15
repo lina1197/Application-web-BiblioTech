@@ -1,6 +1,9 @@
 import express, { urlencoded } from 'express';
 import bcrypt from 'bcrypt'; 
 import 'dotenv/config';
+import nodemailer from 'nodemailer';
+
+
 // import path from 'path';
 
 // const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -34,6 +37,8 @@ import commentRouter from './routes/utilisateur/CommentRouter.js';
 import replyRouter from './routes/utilisateur/ReplyRouter.js';
 import historiqueRouter from './routes/utilisateur/HistoriqueRouter.js';
 import statisticsRouter from './routes/employée/statistics.js';
+import etudiantRouter from './routes/EtudiantRoute.js';
+
 app.use('/employe/categorie', catégorieRouter);
 app.use('/employe/livre', livreRouter);
 app.use('/employe/livre', empruntRouter);
@@ -43,5 +48,28 @@ app.use('/utilisateur/livre',catalogueRouter);
 app.use('/utilisateur/livre',commentRouter);
 app.use('/utilisateur/livre',replyRouter);
 app.use('/utilisateur/emprunts',historiqueRouter);
+app.use('/etudiant',etudiantRouter);
 
 
+let mailTransporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'bibliotech2.23@gmail.com',
+        pass: 'fczsxetjtxrikesy'
+    }
+});
+ 
+let mailDetails = {
+    from: 'bibliotech2.23@gmail.com',
+    to: 'laa.nov97@outlook.com',
+    subject: 'Test mail',
+    text: 'node mailer test is successfull.'
+};
+ 
+mailTransporter.sendMail(mailDetails, function(err, data) {
+    if(err) {
+        console.log('Error Occurs');
+    } else {
+        console.log('Email sent successfully');
+    }
+});
