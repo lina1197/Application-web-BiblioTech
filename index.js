@@ -1,16 +1,8 @@
 import express, { urlencoded } from 'express';
-import bcrypt from 'bcrypt'; 
 import 'dotenv/config';
 import nodemailer from 'nodemailer';
 
 
-// import path from 'path';
-
-// const __dirname = path.dirname(new URL(import.meta.url).pathname);
-
-
-
-console.log(process.env.PRIVATE_KEY)
 
 
 const app=express();
@@ -50,18 +42,18 @@ app.use('/utilisateur/livre',replyRouter);
 app.use('/utilisateur/emprunts',historiqueRouter);
 app.use('/etudiant',etudiantRouter);
 
-
+const pwd=process.env.pwd;
 let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: ''
+        pass: pwd
     }
 });
  
 let mailDetails = {
     from: 'bibliotech2.23@gmail.com',
-    to: '',//you can input your personal email here to test
+    to: '', //you can put your personal email between '' to test
     subject: 'Test mail',
     text: 'node mailer test is successfull.'
 };
