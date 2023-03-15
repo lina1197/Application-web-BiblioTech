@@ -24,7 +24,7 @@ export async function register (req,res, next) {
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: 'fczsxetjtxrikesy'
+        pass: ''
     }
 });
  
