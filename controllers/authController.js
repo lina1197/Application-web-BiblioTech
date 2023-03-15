@@ -22,13 +22,14 @@ export async function register (req,res, next) {
      password:encryptedPassword,
      role,   
      })
+     const pwd=process.env.pwd
 
 
      let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: process.env.pwd
+        pass: pwd
     }
 });
  
