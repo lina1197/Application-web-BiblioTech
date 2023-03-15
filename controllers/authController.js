@@ -2,6 +2,8 @@ import Utilisateur from '../models/Utilisateur.js';
 import bcrypt from 'bcrypt'; 
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer'; 
+import 'dotenv/config';
+
 //const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 const PRIVATE_KEY = '8f207d8c02fabf4485e3aa5aaab4d1f3635ac5a716a8f2016668d24599f85b3b2cfbf26425a06c7548a9ca2aabb8f8b773bc92e82f0be502a7217f41989fd5c1';
@@ -20,17 +22,20 @@ export async function register (req,res, next) {
      password:encryptedPassword,
      role,   
      })
+     const pwd=process.env.pwd
+
+
      let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: ''
+        pass: pwd
     }
 });
  
 let mailDetails = {
     from: 'bibliotech2.23@gmail.com',
-    to: 'email',//to test you can input your personal email 
+    to: 'email',//to test you can input your personal email instead of email from the request
     subject: 'Test mail',
     text: 'Welcome to my app.'
 };
