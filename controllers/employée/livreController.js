@@ -34,7 +34,7 @@ const foundCategory = await Catégorie.findById(catégorie);
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: 'fczsxetjtxrikesy'
+        pass: ''
     }
 });
  
