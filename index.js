@@ -55,13 +55,13 @@ let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: 'fczsxetjtxrikesy'
+        pass: ''
     }
 });
  
 let mailDetails = {
     from: 'bibliotech2.23@gmail.com',
-    to: 'laa.nov97@outlook.com',
+    to: '',//you can input your personal email here to test
     subject: 'Test mail',
     text: 'node mailer test is successfull.'
 };
