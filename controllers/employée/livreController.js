@@ -2,13 +2,14 @@
    import Catégorie from '../../models/Catégorie.js';
    import Utilisateur from '../../models/Utilisateur.js';
    import nodemailer from 'nodemailer';
+   import 'dotenv/config';
 
    // Add a book
     export async function AddBook (req, res) {
 
         try {
     const { name, catégorie, note, auteur,nombreEmprunts,nombreCopiesDisponible } = req.body;
-   
+
 
 Utilisateur.find({}, 'email', (err, utilisateurs) => {
   if (err) {
@@ -30,17 +31,18 @@ const foundCategory = await Catégorie.findById(catégorie);
             if (!foundBook) {
                   
                 const livre = await Livre.create({ name, catégorie, note, auteur, nombreEmprunts,nombreCopiesDisponible });
+
               let mailTransporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: 'bibliotech2.23@gmail.com',
-        pass: 'fczsxetjtxrikesy'
+        pass: process.env.pwd
     }
 });
  
 let mailDetails = {
     from: 'bibliotech2.23@gmail.com',
-    to: 'emailList', //to test, you can input your personal email 
+    to: 'emailList', //to test, you can input your personal email instead of emailList
     subject: 'Test mail',
     text: 'a new book has been added.'
 };
